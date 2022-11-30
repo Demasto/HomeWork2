@@ -10,6 +10,7 @@ namespace MoviesApp.Data
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
+            Console.WriteLine("Seeding Database");
             using (var context = new MoviesContext(
                 serviceProvider.GetRequiredService<
                     DbContextOptions<MoviesContext>>()))
@@ -19,7 +20,7 @@ namespace MoviesApp.Data
                 {
                     return;   // DB has been seeded
                 }
-                
+
                 context.Movies.AddRange(
                     new Movie
                     {
@@ -28,7 +29,7 @@ namespace MoviesApp.Data
                         Genre = "Romantic Comedy",
                         Price = 7.99M
                     },
-                    
+
 
                     new Movie
                     {
@@ -52,11 +53,46 @@ namespace MoviesApp.Data
                         ReleaseDate = DateTime.Parse("1959-4-15"),
                         Genre = "Western",
                         Price = 3.99M
-                    }
-                );
-                
+                    });
+
+                if (context.Actors.Any())
+                {
+                    return;   // DB has been seeded
+                }
+                context.Actors.AddRange(
+                    new Actor
+                    {
+                        FirstName = "Steven",
+                        LastName = "Spielberg",
+                        DateOfBirth = DateTime.Parse("1946-2-9"),
+
+
+                    },
+
+                    new Actor
+                    {
+                        FirstName = "Morgan",
+                        LastName = "Freeman",
+                        DateOfBirth = DateTime.Parse("1946-1-11"),
+                    },
+
+                    new Actor
+                    {
+                        FirstName = "Steven",
+                        LastName = "Spielberg",
+                        DateOfBirth = DateTime.Parse("1937-6-14"),
+                    },
+
+                    new Actor
+                    {
+                        FirstName = "Harrison",
+                        LastName = "Ford",
+                        DateOfBirth = DateTime.Parse("1942-2-12"),
+                    });
+
                 context.SaveChanges();
             }
+
         }
     }
 }
