@@ -28,7 +28,7 @@ namespace MoviesApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var actors = _mapper.Map<ICollection<Actor>, ICollection<ActorViewModel>>(_context.Actors.ToList());
+            var actors = _mapper.Map<IEnumerable<Actor>, IEnumerable<ActorViewModel>>(_context.Actors.ToList());
             return View(actors);
         }
 

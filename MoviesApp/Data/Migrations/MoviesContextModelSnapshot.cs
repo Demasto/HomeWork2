@@ -21,7 +21,7 @@ namespace MoviesApp.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
+            
             modelBuilder.Entity("MoviesApp.Models.Actor", b =>
                 {
                     b.Property<int>("Id")
@@ -30,15 +30,14 @@ namespace MoviesApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
-
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
                     b.HasKey("Id");
 
                     b.ToTable("Actors");
